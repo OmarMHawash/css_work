@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="img-src https://*; media-src https://*;"
+    />
+    <meta name="description" content="A simple video slider with loading bar" />
+    <meta name="keywords" content="video, slider, loading" />
+    <meta name="omarmhawash" content="Vide Hero slider" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Vide Hero Slider</title>
+  </head>
+  <body>
+    <div id="hero-video-slider">
+      <div class="videos">
+        <div class="video-item">
+          <div class="video-wrapper">
+            <video
+              src="https://www.datocms-assets.com/22581/1603987542-2-pexels.mp4"
+              playsinline
+              loop
+              muted
+            />
+          </div>
+          <div class="hero-desc">
+            <h1>Title X</h1>
+            <p>x tells description really</p>
+            <button>View more</button>
+          </div>
+        </div>
+        <div class="video-item">
+          <div class="video-wrapper">
+            <video
+              src="https://www.datocms-assets.com/22581/1603987530-1-pixabay.mp4"
+              playsinline
+              loop
+              muted
+            />
+          </div>
+          <div class="hero-desc">
+            <h1>Another Title</h1>
+            <p>more descriptive information</p>
+            <button>View more</button>
+          </div>
+        </div>
+        <div class="video-item">
+          <div class="video-wrapper">
+            <video
+              src="https://www.datocms-assets.com/22581/1603987638-5-life-of-vids.mp4"
+              playsinline
+              loop
+              muted
+            />
+          </div>
+          <div class="hero-desc">
+            <h1>Another Title</h1>
+            <p>reading more about this</p>
+            <button>View more</button>
+          </div>
+        </div>
+      </div>
+      <div class="loading-percent"></div>
+    </div>
+  </body>
+  <script>
+    const videoItems = document.getElementsByClassName("video-item");
+    const videoTags = document.getElementsByTagName("video");
+    const aBox = document.querySelector(".loading-percent");
+
+    const videosLength = videoItems.length;
+    let videoIdx = 0;
+    let loadPer = 2;
+    const loopTime = 5000;
+
+    function hideVideos(showIndex) {
+      for (let i = 0; i < videoItems.length; i++) {
+        const rmTime =
+          (videoTags[i].duration - videoTags[i].currentTime) * 1000;
+        if (showIndex != i) {
+          videoItems[i].style.display = "none";
+          videoTags[i].pause();
+          if (i > 0 && rmTime < loopTime) {
+            videoTags[i].currentTime = 0;
+            console.log(rmTime, loopTime);
+          }
+        } else {
+          videoItems[i].style.display = "block";
+          videoTags[i].play();
+        }
+      }
+    }
+
+    function loopVideos() {
+      console.log("videos at", videoIdx);
+      hideVideos(videoIdx);
+      videoIdx = (videoIdx + 1) % videosLength;
+    }
+    function updateLoading() {
+      aBox.style.cssText = `width:${loadPer}%`;
+      loadPer = (loadPer + 1) % 100;
+    }
+
+    // main
+    hideVideos(0);
+    loopVideos();
+    setInterval(() => {
+      loopVideos();
+      loadPer = 2;
+    }, loopTime);
+    setInterval(() => {
+      updateLoading();
+    }, 50);
+  </script>
+</html>
