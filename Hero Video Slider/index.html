@@ -11,6 +11,8 @@
     <meta name="keywords" content="video, slider, loading" />
     <meta name="omarmhawash" content="Vide Hero slider" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.keyframes.css" />
+
     <title>Vide Hero Slider</title>
   </head>
   <body>
@@ -25,10 +27,16 @@
               muted
             />
           </div>
+          <div class="desc-shadow"></div>
           <div class="hero-desc">
             <h1>Title X</h1>
-            <p>x tells description really</p>
-            <button>View more</button>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Assumenda distinctio necessitatibus corrupti quo ratione, itaque
+              dolore repellendus delectus incidunt animi eos eum sit officiis
+              quia ab! Alias, quas labore? Impedit!
+            </p>
+            <button>Play ▶</button>
           </div>
         </div>
         <div class="video-item">
@@ -40,10 +48,16 @@
               muted
             />
           </div>
+          <div class="desc-shadow"></div>
           <div class="hero-desc">
             <h1>Another Title</h1>
-            <p>more descriptive information</p>
-            <button>View more</button>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores
+              reiciendis magnam quidem consequuntur repellendus tempore harum
+              porro veniam. Quas aspernatur voluptate repudiandae ad explicabo
+              eos necessitatibus ut enim sequi ipsa!
+            </p>
+            <button>Play ▶</button>
           </div>
         </div>
         <div class="video-item">
@@ -55,14 +69,20 @@
               muted
             />
           </div>
+          <div class="desc-shadow"></div>
           <div class="hero-desc">
             <h1>Another Title</h1>
-            <p>reading more about this</p>
-            <button>View more</button>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo,
+              fugiat dolores ullam nam doloremque adipisci doloribus beatae ad
+              quae corrupti repellendus, ipsa atque impedit soluta sit?
+              Explicabo reiciendis dignissimos nihil.
+            </p>
+            <button>Play ▶</button>
           </div>
         </div>
       </div>
-      <div class="loading-percent"></div>
+      <div class="loading-percent" />
     </div>
   </body>
   <script>
@@ -113,5 +133,11 @@
     setInterval(() => {
       updateLoading();
     }, 50);
+
+    //* hover effect testing
+    // const desc = document.querySelector(".hero-desc");
+    // desc.addEventListener("mouseenter", () => {
+
+    // });
   </script>
 </html>
