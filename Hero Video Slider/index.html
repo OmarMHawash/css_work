@@ -21,20 +21,21 @@
         <div class="video-item">
           <div class="video-wrapper">
             <video
-              src="https://www.datocms-assets.com/22581/1603987542-2-pexels.mp4"
+              src="https://v4.cdnpk.net/videvo_files/video/free/video0467/large_watermarked/_import_6153fd7fb02b42.10914171_FPpreview.mp4"
               playsinline
               loop
               muted
             />
           </div>
           <div class="desc-shadow"></div>
+          <div class="black-shadow"></div>
           <div class="hero-desc">
-            <h1>Title X</h1>
+            <h1>Leaning Worker</h1>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Assumenda distinctio necessitatibus corrupti quo ratione, itaque
-              dolore repellendus delectus incidunt animi eos eum sit officiis
-              quia ab! Alias, quas labore? Impedit!
+              Coffee truck worker leaning on the van while using a tablet, group
+              of people talk and drink coffee in the background necessitatibus
+              corrupti quo ratione, itaque dolore repellendus delectus incidunt
+              animi eos eum sit officiis quia ab! Alias, quas labore? Impedit!
             </p>
             <button>Play ▶</button>
           </div>
@@ -42,20 +43,21 @@
         <div class="video-item">
           <div class="video-wrapper">
             <video
-              src="https://www.datocms-assets.com/22581/1603987530-1-pixabay.mp4"
+              src="https://v4.cdnpk.net/videvo_files/video/free/video0482/large_watermarked/_import_62a032b814dcf3.17632143_FPpreview.mp4"
               playsinline
               loop
               muted
             />
           </div>
           <div class="desc-shadow"></div>
+          <div class="black-shadow"></div>
           <div class="hero-desc">
-            <h1>Another Title</h1>
+            <h1>Truck Fleet</h1>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores
-              reiciendis magnam quidem consequuntur repellendus tempore harum
-              porro veniam. Quas aspernatur voluptate repudiandae ad explicabo
-              eos necessitatibus ut enim sequi ipsa!
+              Bottom view of boss and worker organizing a truck fleet in a
+              logistics park reiciendis magnam quidem consequuntur repellendus
+              tempore harum porro veniam. Quas aspernatur voluptate repudiandae
+              ad explicabo eos necessitatibus ut enim sequi ipsa!
             </p>
             <button>Play ▶</button>
           </div>
@@ -63,20 +65,22 @@
         <div class="video-item">
           <div class="video-wrapper">
             <video
-              src="https://www.datocms-assets.com/22581/1603987638-5-life-of-vids.mp4"
+              src="https://v4.cdnpk.net/videvo_files/video/free/video0468/large_watermarked/_import_615e822f441630.29312117_FPpreview.mp4"
               playsinline
               loop
               muted
             />
           </div>
           <div class="desc-shadow"></div>
+          <div class="black-shadow"></div>
           <div class="hero-desc">
-            <h1>Another Title</h1>
+            <h1>Blue Uniform</h1>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo,
-              fugiat dolores ullam nam doloremque adipisci doloribus beatae ad
-              quae corrupti repellendus, ipsa atque impedit soluta sit?
-              Explicabo reiciendis dignissimos nihil.
+              Male courier in blue uniform taking packages out of van and
+              delivering it to blond woman waiting on front porch ullam nam
+              doloremque adipisci doloribus beatae ad quae corrupti repellendus,
+              ipsa atque impedit soluta sit? Explicabo reiciendis dignissimos
+              nihil.
             </p>
             <button>Play ▶</button>
           </div>
@@ -91,9 +95,9 @@
     const aBox = document.querySelector(".loading-percent");
 
     const videosLength = videoItems.length;
+    const loopTime = 8000;
     let videoIdx = 0;
     let loadPer = 2;
-    const loopTime = 5000;
 
     function hideVideos(showIndex) {
       for (let i = 0; i < videoItems.length; i++) {
@@ -120,10 +124,9 @@
     }
     function updateLoading() {
       aBox.style.cssText = `width:${loadPer}%`;
-      loadPer = (loadPer + 1) % 100;
+      loadPer = (loadPer + 0.1) % 100;
     }
 
-    // main
     hideVideos(0);
     loopVideos();
     setInterval(() => {
@@ -132,12 +135,6 @@
     }, loopTime);
     setInterval(() => {
       updateLoading();
-    }, 50);
-
-    //* hover effect testing
-    // const desc = document.querySelector(".hero-desc");
-    // desc.addEventListener("mouseenter", () => {
-
-    // });
+    }, loopTime / 1000);
   </script>
 </html>
