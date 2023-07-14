@@ -16,9 +16,9 @@
     <title>Vide Hero Slider</title>
   </head>
   <body>
-    <div id="hero-video-slider">
+    <div id="hero-video-slider" class="relative">
       <div class="videos">
-        <div class="video-item">
+        <div class="video-item relative">
           <div class="video-wrapper">
             <video
               src="https://v4.cdnpk.net/videvo_files/video/free/video0467/large_watermarked/_import_6153fd7fb02b42.10914171_FPpreview.mp4"
@@ -27,9 +27,9 @@
               muted
             />
           </div>
-          <div class="desc-shadow"></div>
-          <div class="black-shadow"></div>
-          <div class="hero-desc">
+          <div class="desc-shadow absolute"></div>
+          <div class="black-shadow absolute"></div>
+          <div class="hero-desc absolute">
             <h1>Leaning Worker</h1>
             <p>
               Coffee truck worker leaning on the van while using a tablet, group
@@ -37,10 +37,10 @@
               corrupti quo ratione, itaque dolore repellendus delectus incidunt
               animi eos eum sit officiis quia ab! Alias, quas labore? Impedit!
             </p>
-            <button>Play ▶</button>
+            <button class="hero-btn play-btn">Play ▶</button>
           </div>
         </div>
-        <div class="video-item">
+        <div class="video-item relative">
           <div class="video-wrapper">
             <video
               src="https://v4.cdnpk.net/videvo_files/video/free/video0482/large_watermarked/_import_62a032b814dcf3.17632143_FPpreview.mp4"
@@ -49,9 +49,9 @@
               muted
             />
           </div>
-          <div class="desc-shadow"></div>
-          <div class="black-shadow"></div>
-          <div class="hero-desc">
+          <div class="desc-shadow absolute"></div>
+          <div class="black-shadow absolute"></div>
+          <div class="hero-desc absolute">
             <h1>Truck Fleet</h1>
             <p>
               Bottom view of boss and worker organizing a truck fleet in a
@@ -59,10 +59,10 @@
               tempore harum porro veniam. Quas aspernatur voluptate repudiandae
               ad explicabo eos necessitatibus ut enim sequi ipsa!
             </p>
-            <button>Play ▶</button>
+            <button class="hero-btn play-btn">Play ▶</button>
           </div>
         </div>
-        <div class="video-item">
+        <div class="video-item relative">
           <div class="video-wrapper">
             <video
               src="https://v4.cdnpk.net/videvo_files/video/free/video0468/large_watermarked/_import_615e822f441630.29312117_FPpreview.mp4"
@@ -71,9 +71,9 @@
               muted
             />
           </div>
-          <div class="desc-shadow"></div>
-          <div class="black-shadow"></div>
-          <div class="hero-desc">
+          <div class="desc-shadow absolute"></div>
+          <div class="black-shadow absolute"></div>
+          <div class="hero-desc absolute">
             <h1>Blue Uniform</h1>
             <p>
               Male courier in blue uniform taking packages out of van and
@@ -82,66 +82,15 @@
               ipsa atque impedit soluta sit? Explicabo reiciendis dignissimos
               nihil.
             </p>
-            <button>Play ▶</button>
+            <button class="hero-btn play-btn">Play ▶</button>
           </div>
         </div>
       </div>
-      <button class="next-btn" onclick="nextVideo()">></button>
-      <div class="loading-percent" />
+      <button class="next-btn hero-btn absolute" onclick="nextVideo()">
+        →
+      </button>
+      <div class="loading-percent absolute" />
     </div>
   </body>
-  <script>
-    const videoItems = document.getElementsByClassName("video-item");
-    const nextBtn = document.getElementsByClassName("next-btn")[0];
-    const videoTags = document.getElementsByTagName("video");
-    const aBox = document.querySelector(".loading-percent");
-
-    const videosLength = videoItems.length;
-    const loopTime = 8000;
-    let videoIdx = 0;
-    let loadPer = 2;
-
-    function hideVideos(showIndex) {
-      for (let i = 0; i < videoItems.length; i++) {
-        const rmTime =
-          (videoTags[i].duration - videoTags[i].currentTime) * 1000;
-        if (showIndex != i) {
-          videoItems[i].style.display = "none";
-          videoTags[i].pause();
-          if (i > 0 && rmTime < loopTime) {
-            videoTags[i].currentTime = 0;
-            console.log(rmTime, loopTime);
-          }
-        } else {
-          videoItems[i].style.display = "block";
-          videoTags[i].play();
-        }
-      }
-    }
-
-    function loopVideos() {
-      console.log("videos at", videoIdx);
-      hideVideos(videoIdx);
-      videoIdx = (videoIdx + 1) % videosLength;
-    }
-    function updateLoading() {
-      aBox.style.cssText = `width:${loadPer}%`;
-      loadPer = (loadPer + 0.1) % 100;
-    }
-
-    function nextVideo() {
-      loopVideos();
-      loadPer = 2;
-    }
-
-    hideVideos(0);
-    loopVideos();
-    setInterval(() => {
-      loopVideos();
-      loadPer = 2;
-    }, loopTime);
-    setInterval(() => {
-      updateLoading();
-    }, loopTime / 1000);
-  </script>
+  <script src="script.js"></script>
 </html>
