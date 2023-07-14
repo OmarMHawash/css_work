@@ -86,11 +86,13 @@
           </div>
         </div>
       </div>
+      <button class="next-btn" onclick="nextVideo()">></button>
       <div class="loading-percent" />
     </div>
   </body>
   <script>
     const videoItems = document.getElementsByClassName("video-item");
+    const nextBtn = document.getElementsByClassName("next-btn")[0];
     const videoTags = document.getElementsByTagName("video");
     const aBox = document.querySelector(".loading-percent");
 
@@ -125,6 +127,11 @@
     function updateLoading() {
       aBox.style.cssText = `width:${loadPer}%`;
       loadPer = (loadPer + 0.1) % 100;
+    }
+
+    function nextVideo() {
+      loopVideos();
+      loadPer = 2;
     }
 
     hideVideos(0);
