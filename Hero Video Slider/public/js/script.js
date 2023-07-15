@@ -1,12 +1,18 @@
+const videoHero = document.getElementById("hero-video-slider");
 const videoItems = document.getElementsByClassName("video-item");
 const nextBtn = document.getElementsByClassName("next-btn")[0];
 const videoTags = document.getElementsByTagName("video");
 const aBox = document.querySelector(".loading-percent");
 
+videoHero.addEventListener("mousedown", handleMouseDown);
+videoHero.addEventListener("mouseup", handleMouseUp);
+
 const videosLength = videoItems.length;
 const loopTime = 8000;
 let videoIdx = 0;
 let loadPer = 2;
+let isDragging = false;
+let xPos = 0;
 
 function hideVideos(showIndex) {
   for (let i = 0; i < videoItems.length; i++) {
@@ -16,7 +22,6 @@ function hideVideos(showIndex) {
       videoTags[i].pause();
       if (i > 0 && rmTime < loopTime) {
         videoTags[i].currentTime = 0;
-        console.log(rmTime, loopTime);
       }
     } else {
       videoItems[i].style.display = "block";
@@ -25,27 +30,43 @@ function hideVideos(showIndex) {
   }
 }
 
-function loopVideos() {
-  console.log("videos at", videoIdx);
+function loopVideos(offset = 1) {
+  console.log("loopVideos ~ videoIdx:", videoIdx);
   hideVideos(videoIdx);
-  videoIdx = (videoIdx + 1) % videosLength;
+  let newVideoIndex = (videoIdx + offset) % videosLength;
+  videoIdx = Math.max(0, newVideoIndex);
 }
 function updateLoading() {
   aBox.style.cssText = `width:${loadPer}%`;
   loadPer = (loadPer + 0.2) % 100;
 }
 
-function nextVideo() {
-  loopVideos();
+function moveVideo(offset = 1) {
+  loopVideos(offset);
   loadPer = 2;
 }
 
 hideVideos(0);
 loopVideos();
 setInterval(() => {
-  loopVideos();
-  loadPer = 2;
+  moveVideo();
 }, loopTime);
 setInterval(() => {
   updateLoading();
 }, loopTime / 500);
+
+function handleMouseDown(event) {
+  isDragging = true;
+  xPos = event.clientX;
+}
+
+function handleMouseUp(event) {
+  isDragging = false;
+  newXPos = event.clientX;
+  const dragDistance = newXPos - xPos;
+  if (dragDistance > 0) {
+    moveVideo(-1);
+  } else {
+    moveVideo();
+  }
+}
