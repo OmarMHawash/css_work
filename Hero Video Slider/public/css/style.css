@@ -14,7 +14,9 @@
 
 #hero-video-slider {
   width: 100%;
+  max-width: 1150px;
   height: 400px;
+  margin: 0 auto;
   font-weight: 900;
   font-family: "Rebond";
   background-color: #000;
@@ -91,7 +93,7 @@
   margin: 0 auto;
   bottom: 0;
   left: 0;
-  box-shadow: 0 -80px 100px 70px #0000006b;
+  box-shadow: 70px -90px 150px 70px #0000006b;
 }
 
 .black-shadow {
@@ -102,7 +104,7 @@
   opacity: 0;
   background-color: #0000007d;
   transition-timing-function: linear;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .video-item:hover .black-shadow {
