@@ -63,9 +63,9 @@ function handleMouseUp(event) {
   isDragging = false;
   newXPos = event.clientX;
   const dragDistance = newXPos - xPos;
-  if (dragDistance > 0) {
+  if (dragDistance > 10) {
     moveVideo(-1);
-  } else {
+  } else if (dragDistance < -10) {
     moveVideo();
   }
 }
