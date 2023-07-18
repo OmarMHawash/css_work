@@ -10,12 +10,18 @@
     <meta name="description" content="A simple video slider with loading bar" />
     <meta name="keywords" content="video, slider, loading" />
     <meta name="omarmhawash" content="Video Hero V2" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./public/css/style.css" />
     <link rel="stylesheet" href="./public/css/style.keyframes.css" />
 
     <title>Video Hero V2</title>
   </head>
-  <body>
+  <body onload="loadVideos()">
     <div id="hero-video-slider" class="relative">
       <div class="videos">
         <div class="video-item relative">

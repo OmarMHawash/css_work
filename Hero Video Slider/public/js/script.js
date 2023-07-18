@@ -31,7 +31,6 @@ function hideVideos(showIndex) {
 }
 
 function loopVideos(offset = 1) {
-  console.log("loopVideos ~ videoIdx:", videoIdx);
   hideVideos(videoIdx);
   let newVideoIndex = (videoIdx + offset) % videosLength;
   videoIdx = Math.max(0, newVideoIndex);
@@ -46,7 +45,7 @@ function moveVideo(offset = 1) {
   loadPer = 2;
 }
 
-hideVideos(0);
+hideVideos(videoIdx);
 loopVideos();
 setInterval(() => {
   moveVideo();
@@ -69,4 +68,9 @@ function handleMouseUp(event) {
   } else {
     moveVideo();
   }
+}
+
+function loadVideos() {
+  videoHero.style.display = "unset";
+  console.log("loadadD");
 }
