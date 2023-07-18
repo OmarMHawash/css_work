@@ -17,7 +17,7 @@
   max-width: 1150px;
   height: 400px;
   margin: 0 auto;
-  font-family: "Roboto", sans-serif;
+  font-family: "Familjen Grotesk", sans-serif;
   background-color: #000;
   display: none;
 }
@@ -49,12 +49,14 @@
   animation: slide-text-left 8s;
 }
 .hero-desc h1 {
-  font-weight: 900;
+  font-weight: 700;
 }
 .hero-desc p {
   max-width: 60%;
   overflow: hidden;
-  font-weight: 500;
+  font-weight: 400;
+  font-size: 1.1rem;
+  letter-spacing: 0.2px;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;

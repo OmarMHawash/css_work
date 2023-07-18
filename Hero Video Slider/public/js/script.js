@@ -70,7 +70,6 @@ function handleMouseUp(event) {
   }
 }
 
-function loadVideos() {
+function loadDocumet() {
   videoHero.style.display = "unset";
-  console.log("loadadD");
 }
