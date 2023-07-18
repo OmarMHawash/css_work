@@ -14,10 +14,10 @@ let loadPer = 2;
 let isDragging = false;
 let xPos = 0;
 
-function hideVideos(showIndex) {
+function hideVideos(videoIdx = 0) {
   for (let i = 0; i < videoItems.length; i++) {
     const rmTime = (videoTags[i].duration - videoTags[i].currentTime) * 1000;
-    if (showIndex != i) {
+    if (videoIdx != i) {
       videoItems[i].style.display = "none";
       videoTags[i].pause();
       if (i > 0 && rmTime < loopTime) {
@@ -31,9 +31,9 @@ function hideVideos(showIndex) {
 }
 
 function loopVideos(offset = 1) {
-  hideVideos(videoIdx);
   let newVideoIndex = (videoIdx + offset) % videosLength;
   videoIdx = Math.max(0, newVideoIndex);
+  hideVideos(videoIdx);
 }
 function updateLoading() {
   aBox.style.cssText = `width:${loadPer}%`;
@@ -41,8 +41,8 @@ function updateLoading() {
 }
 
 function moveVideo(offset = 1) {
-  loopVideos(offset);
   loadPer = 2;
+  loopVideos(offset);
 }
 
 hideVideos(videoIdx);
