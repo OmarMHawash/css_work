@@ -72,25 +72,28 @@
 .hero-desc .play-btn {
   margin: 15px 0 10px 0;
   padding: 5px 15px 5px 20px;
-}
-
-.hero-btn {
   font-size: 1.5rem;
-  border-radius: 5px;
-  border: none;
-  font-weight: bold;
   background-color: #fff;
   box-shadow: 0 0 20px #00000030;
-  cursor: pointer;
-  transition-timing-function: linear;
-  transition: all 0.12s ease-in-out;
   height: 40px;
 }
 
+.hero-btn {
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.12s ease-in-out;
+  transition-timing-function: linear;
+}
+
 .hero-btn:hover {
+  transform: scale(1.04);
+}
+
+.play-btn:hover {
   background-color: #000;
   color: #fff;
-  transform: scale(1.04);
 }
 
 .desc-shadow {
@@ -128,10 +131,13 @@
 }
 
 .next-btn {
-  bottom: 25px;
-  right: 20px;
-  padding: 7px 10px 10px 10px;
-  line-height: 15px;
-  opacity: 0.9;
-  font-size: 2rem;
+  bottom: 15px;
+  right: 25px;
+  font-size: 3rem;
+  background: none;
+  color: white;
+}
+
+.next-btn:hover {
+  color: black;
 }
