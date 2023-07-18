@@ -1,4 +1,4 @@
-const videoHero = document.getElementById("hero-video-slider");
+const videoHero = document.getElementById("video-hero");
 const videoItems = document.getElementsByClassName("video-item");
 const nextBtn = document.getElementsByClassName("next-btn")[0];
 const videoTags = document.getElementsByTagName("video");
@@ -71,5 +71,5 @@ function handleMouseUp(event) {
 }
 
 function loadDocumet() {
-  videoHero.style.display = "unset";
+  videoHero.style.display = "block";
 }
