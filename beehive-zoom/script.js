@@ -5,7 +5,7 @@ let circlesArr = document.getElementsByClassName("circle");
 let cCount = circlesArr.length;
 const SW = document.getElementById("main-container").offsetWidth;
 const SH = document.getElementById("main-container").offsetHeight;
-const cDim = 100;
+const cDim = 110;
 const dots = [];
 
 // Center of screen (approx center of circles)
@@ -70,7 +70,6 @@ overCircles.addEventListener("mouseup", () => {
 overCircles.addEventListener("touchstart", (e) => {
   dragStartX = e.touches[0].clientX;
   dragStartY = e.touches[0].clientY;
-  console.log(dragStartX, dragStartY);
   overCircles.addEventListener("touchmove", dragCircles);
 });
 
@@ -82,17 +81,13 @@ const dragCircles = (e) => {
   resizeCircles();
   let posLeft = rPx(circles.style.left);
   let posTop = rPx(circles.style.top);
-  // newX = posLeft + e.clientX - dragStartX;
-  // newY = posTop + e.clientY - dragStartY;
-
   newX = posLeft + (e.touches ? e.touches[0].clientX : e.clientX) - dragStartX;
   newY = posTop + (e.touches ? e.touches[0].clientY : e.clientY) - dragStartY;
 
   circles.style.left = `${newX}px`;
   circles.style.top = `${newY}px`;
-
-  dragStartX = e.clientX;
-  dragStartY = e.clientY;
+  dragStartX = e.touches ? e.touches[0].clientX : e.clientX;
+  dragStartY = e.touches ? e.touches[0].clientY : e.clientY;
 };
 
 const resizeCircles = () => {
