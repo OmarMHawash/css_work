@@ -37,9 +37,7 @@ const genDots = (moreXY = 0) => {
     // divElement.style.left = `${dotX}px`;
     // divElement.style.top = `${dotY}px`;
     // circles.appendChild(divElement);
-    // console.log(dotX, dotY, dotXY);
   }
-  console.log(dots);
   dots.sort((a, b) => a.offset - b.offset);
 };
 
@@ -56,8 +54,8 @@ const drawCircles = (limit = cCount) => {
 };
 
 let dragStartX, dragStartY;
-let newX = defX;
-let newY = defY;
+let newX = 0;
+let newY = 0;
 
 overCircles.addEventListener("mousedown", (e) => {
   dragStartX = e.clientX;
@@ -69,12 +67,26 @@ overCircles.addEventListener("mouseup", () => {
   overCircles.removeEventListener("mousemove", dragCircles);
 });
 
+overCircles.addEventListener("touchstart", (e) => {
+  dragStartX = e.touches[0].clientX;
+  dragStartY = e.touches[0].clientY;
+  console.log(dragStartX, dragStartY);
+  overCircles.addEventListener("touchmove", dragCircles);
+});
+
+overCircles.addEventListener("touchend", () => {
+  overCircles.removeEventListener("touchmove", dragCircles);
+});
+
 const dragCircles = (e) => {
   resizeCircles();
   let posLeft = rPx(circles.style.left);
   let posTop = rPx(circles.style.top);
-  newX = posLeft + e.clientX - dragStartX;
-  newY = posTop + e.clientY - dragStartY;
+  // newX = posLeft + e.clientX - dragStartX;
+  // newY = posTop + e.clientY - dragStartY;
+
+  newX = posLeft + (e.touches ? e.touches[0].clientX : e.clientX) - dragStartX;
+  newY = posTop + (e.touches ? e.touches[0].clientY : e.clientY) - dragStartY;
 
   circles.style.left = `${newX}px`;
   circles.style.top = `${newY}px`;
@@ -115,12 +127,14 @@ const spawnCircles = (count = 6) => {
   for (let i = 1; i <= count; i++) {
     let divElement = document.createElement("div");
     divElement.setAttribute("class", "circle");
-
+    let divElement2 = document.createElement("div");
+    divElement2.setAttribute("class", "circle-bg");
     let imgElement = document.createElement("img");
     imgElement.setAttribute("src", `./images2/${i}.png`);
     imgElement.setAttribute("alt", "...");
 
-    divElement.appendChild(imgElement);
+    divElement2.appendChild(imgElement);
+    divElement.appendChild(divElement2);
     circles.appendChild(divElement);
   }
 };
@@ -128,5 +142,5 @@ const spawnCircles = (count = 6) => {
 genDots(0);
 spawnCircles(17);
 spawnCircles(17);
-
 drawCircles(99);
+resizeCircles();
