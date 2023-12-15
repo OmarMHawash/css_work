@@ -3,36 +3,43 @@ const overCircles = document.getElementsByClassName("over-circles")[0];
 let circlesArr = document.getElementsByClassName("circle");
 
 let cCount = circlesArr.length;
-const SW = document.body.offsetWidth;
-const SH = document.body.offsetHeight;
-const cDim = 120;
+const SW = document.getElementById("main-container").offsetWidth;
+const SH = document.getElementById("main-container").offsetHeight;
+const cDim = 100;
 const dots = [];
 
-console.log(document.getElementById("main-container").offsetWidth);
-
 // Center of screen (approx center of circles)
-const defX = SW / 2 - cDim / 2;
-const defY = SH / 2 - cDim / 2;
-
-// had to initialize before setting new ones
+const defX = SW / 2;
+const defY = SH / 2;
+// // had to initialize before setting new ones
 circles.style.left = `0px`;
 circles.style.top = `0px`;
 
 const genDots = (moreXY = 0) => {
-  let dotX = -cDim / 2 - moreXY;
-  let dotY = 0 - moreXY;
+  let dotX = -cDim - moreXY;
+  let dotY = -cDim / 2 - moreXY;
   let line = 1;
   while (dotY - moreXY < SH) {
+    dotX += cDim;
+    let dotXY = Math.sqrt(
+      (defX + cDim - dotX) ** 2 + (defX + cDim - dotY) ** 2
+    );
+    dots.push({ X: dotX - cDim / 2, Y: dotY - cDim / 2, offset: dotXY });
     if (dotX - moreXY > SW) {
-      line += 1;
       if (line % 2 == 0) dotX = 0 - moreXY;
       else dotX = -cDim / 2 - moreXY;
+      line += 1;
       dotY += cDim;
     }
-    dotX += cDim;
-    let dotXY = Math.sqrt((defX - dotX) ** 2 + (defY - dotY) ** 2);
-    dots.push({ X: dotX, Y: dotY, offset: dotXY });
+    //? for drawing dots
+    // let divElement = document.createElement("div");
+    // divElement.setAttribute("class", "dot");
+    // divElement.style.left = `${dotX}px`;
+    // divElement.style.top = `${dotY}px`;
+    // circles.appendChild(divElement);
+    // console.log(dotX, dotY, dotXY);
   }
+  console.log(dots);
   dots.sort((a, b) => a.offset - b.offset);
 };
 
@@ -81,7 +88,9 @@ const resizeCircles = () => {
     c1 = circlesArr[i];
     let cirX = rPx(c1.style.left) + newX;
     let cirY = rPx(c1.style.top) + newY;
-    let cirXY = Math.sqrt((defX - cirX) ** 2 + (defY - cirY) ** 2);
+    let cirXY = Math.sqrt(
+      (defX - cDim / 2 - cirX) ** 2 + (defY - cDim / 2 - cirY) ** 2
+    );
     let cirPower = scaleDistance(cirXY);
     c1.style.setProperty("transform", `scale(${cirPower})`);
   }
@@ -89,8 +98,8 @@ const resizeCircles = () => {
 
 function scaleDistance(x) {
   const minScale = 0.4;
-  const maxScale = 1.5;
-  const maxInput = 1000;
+  const maxScale = 1.6;
+  const maxInput = 500;
 
   const normalizedX = x / maxInput;
   const scaledX = normalizedX * (maxScale - minScale) + minScale;
@@ -116,7 +125,8 @@ const spawnCircles = (count = 6) => {
   }
 };
 
-genDots(100);
+genDots(0);
 spawnCircles(17);
-spawnCircles(2);
+spawnCircles(17);
+
 drawCircles(99);
