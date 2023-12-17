@@ -91,28 +91,28 @@ let dragStartX, dragStartY;
 let newX = 0;
 let newY = 0;
 
-overCircles.addEventListener(
-  "mousedown",
-  (e) => {
-    if (document.body.scrollTop === 0) {
-      e.preventDefault();
-    }
-    dragStartX = e.clientX;
-    dragStartY = e.clientY;
-    overCircles.addEventListener("mousemove", dragCircles);
-  },
-  { passive: false }
-);
+overCircles.addEventListener("mousedown", (e) => {
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+  overCircles.addEventListener("mousemove", dragCircles);
+});
 
 overCircles.addEventListener("mouseup", () => {
   overCircles.removeEventListener("mousemove", dragCircles);
 });
 
-overCircles.addEventListener("touchstart", (e) => {
-  dragStartX = e.touches[0].clientX;
-  dragStartY = e.touches[0].clientY;
-  overCircles.addEventListener("touchmove", dragCircles);
-});
+overCircles.addEventListener(
+  "touchstart",
+  (e) => {
+    if (document.body.scrollTop === 0) {
+      e.preventDefault();
+    }
+    dragStartX = e.touches[0].clientX;
+    dragStartY = e.touches[0].clientY;
+    overCircles.addEventListener("touchmove", dragCircles);
+  },
+  { passive: false }
+);
 
 overCircles.addEventListener("touchend", () => {
   overCircles.removeEventListener("touchmove", dragCircles);
