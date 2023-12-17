@@ -3,15 +3,49 @@ const overCircles = document.getElementsByClassName("over-circles")[0];
 let circlesArr = document.getElementsByClassName("circle");
 
 let cCount = circlesArr.length;
-const SW = document.getElementById("main-container").offsetWidth;
-const SH = document.getElementById("main-container").offsetHeight;
+const SW = document.getElementsByClassName("circles-wrapper")[0].offsetWidth;
+const SH = document.getElementsByClassName("circles-wrapper")[0].offsetHeight;
 const cDim = 110;
 const dots = [];
-
+const images = [
+  "Adobe.png",
+  "Firefox.png",
+  "Mastercard.png",
+  "Battle.net.png",
+  "Steam.png",
+  "YouTube.png",
+  "Gmail.png",
+  "Upwork.png",
+  "Linkedin.png",
+  "GitHub.png",
+  "Figma.png",
+  "React.png",
+  "Trello.png",
+  "WordPress.png",
+  "Webflow.png",
+  "Dropbox.png",
+  "Pintrest.png",
+  "Wikipedia.png",
+  "Slack.png",
+  "Telegram.png",
+  "Discord.png",
+  "Snapchat.png",
+  "Vimeo.png",
+  "Twitch.png",
+  "Tumblr.png",
+  "Live Journal.png",
+  "Reddit.png",
+  "Medium.png",
+  "Twitter.png",
+  "WhatsApp.png",
+  "Instagram.png",
+  "Messenger.png",
+  "Facebook.png",
+];
 // Center of screen (approx center of circles)
 const defX = SW / 2;
 const defY = SH / 2;
-// // had to initialize before setting new ones
+// had to initialize before setting new ones
 circles.style.left = `0px`;
 circles.style.top = `0px`;
 
@@ -110,7 +144,7 @@ function scaleDistance(x) {
 
   const normalizedX = x / maxInput;
   const scaledX = normalizedX * (maxScale - minScale) + minScale;
-  const invertedX = 1.6 - scaledX;
+  const invertedX = maxScale - scaledX;
   return invertedX.toFixed(2);
 }
 
@@ -122,20 +156,16 @@ const spawnCircles = (count = 6) => {
   for (let i = 1; i <= count; i++) {
     let divElement = document.createElement("div");
     divElement.setAttribute("class", "circle");
-    let divElement2 = document.createElement("div");
-    divElement2.setAttribute("class", "circle-bg");
     let imgElement = document.createElement("img");
-    imgElement.setAttribute("src", `./images2/${i}.png`);
+    imgElement.setAttribute("src", `./socials/${images[i - 1]}`);
     imgElement.setAttribute("alt", "...");
 
-    divElement2.appendChild(imgElement);
-    divElement.appendChild(divElement2);
+    divElement.appendChild(imgElement);
     circles.appendChild(divElement);
   }
 };
 
 genDots(0);
-spawnCircles(17);
-spawnCircles(17);
+spawnCircles(33);
 drawCircles(99);
 resizeCircles();

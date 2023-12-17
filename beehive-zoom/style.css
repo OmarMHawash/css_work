@@ -7,33 +7,47 @@ body {
   font-family: "Roboto", sans-serif;
   width: 100vw;
   height: 100vh;
-  background-color: #333333;
+  background-color: white;
+  user-select: none; /* Standard syntax */
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
 }
-.watch-wrapper {
+
+.watch {
   width: 100%;
   height: 100%;
+  position: relative;
 }
-#main-container {
+
+.watch img {
+  width: 750px;
+}
+
+.circles-wrapper {
   width: 500px;
   height: 500px;
   position: absolute;
   overflow: hidden;
   border-radius: 10%;
   background-color: black;
-  margin: 5%;
-  top: 303px;
-  left: 53px;
-  /* background-image: linear-gradient(45deg, #12181c, #121212); */
 }
 
-.watch {
-  margin: 5%;
+.watch-h-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
   position: absolute;
 }
 
-.watch img {
-  max-width: 635px;
-  filter: brightness(0.2);
+.watch-w-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .circles {
@@ -46,20 +60,13 @@ body {
   position: absolute;
   width: 110px;
   height: 110px;
+  padding: 5px;
   animation: fadeIn 0.5s ease-in-out;
-}
-.circle-bg {
-  width: 85%;
-  height: 85%;
-  border-radius: 50%;
-  margin: 6px;
-  background-image: linear-gradient(to bottom, #ffffff, #1bbbbb);
 }
 
 .circle img {
   width: 100%;
   height: 100%;
-  scale: 0.65;
 }
 
 .over-circles {
@@ -89,9 +96,14 @@ body {
   z-index: 4;
 }
 
-/* media querues */
-@media (max-width: 700px) {
-  body {
+@media screen and (max-width: 768px) {
+  .watch {
     scale: 0.5;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .watch {
+    scale: 0.7;
   }
 }
