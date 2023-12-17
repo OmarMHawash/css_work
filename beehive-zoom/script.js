@@ -101,15 +101,18 @@ overCircles.addEventListener("mouseup", () => {
   overCircles.removeEventListener("mousemove", dragCircles);
 });
 
-overCircles.addEventListener(
-  "touchstart",
+overCircles.addEventListener("touchstart", (e) => {
+  dragStartX = e.touches[0].clientX;
+  dragStartY = e.touches[0].clientY;
+  overCircles.addEventListener("touchmove", dragCircles);
+});
+
+overCircles.removeEventListener(
+  "touchmove",
   (e) => {
     if (document.body.scrollTop === 0) {
       e.preventDefault();
     }
-    dragStartX = e.touches[0].clientX;
-    dragStartY = e.touches[0].clientY;
-    overCircles.addEventListener("touchmove", dragCircles);
   },
   { passive: false }
 );
